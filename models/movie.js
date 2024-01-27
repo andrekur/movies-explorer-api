@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const isUrl = require('validator/lib/isUrl');
+const validator = require('validator')
 
 
 const movieSchema = new mongoose.Schema({
@@ -31,7 +31,7 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: {
-      validator: (v) => isUrl(v),
+      validator: (v) => validator.isEmail(v),
       message: 'url only',
     }
   },
@@ -39,7 +39,7 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: {
-      validator: (v) => isUrl(v),
+      validator: (v) => validator.isEmail(v),
       message: 'url only',
     }
   },
@@ -47,7 +47,7 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: {
-      validator: (v) => isUrl(v),
+      validator: (v) => validator.isEmail(v),
       message: 'url only',
     }
   },
