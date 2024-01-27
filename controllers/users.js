@@ -7,6 +7,32 @@ const User = require('../models/user')
 const { HTTP_STATUS_CREATED } = require('http2').constants
 
 
+module.exports.getSeltUser = (req, res, next) => {
+  findUserOrFail(req.user._id)
+    .then(user => res.send({
+      email: user.email,
+      name: user.name
+    }))
+    .catch(next)
+}
+module.exports.updateSelfUser = (req, res, next) => {
+  const { email, name } = req.body;
+  updateUserData(req.user._id, {email, name})
+    .then(user => res.send(user))
+    .catch(next)
+}
+
+const updateUserData = (userId, updateData) => {
+  return User.findByIdAndUpdate(userId, updateData, {
+    new: true,
+    runValidators: true,
+  }).orFail()
+}
+
+const findUserOrFail = (userId) => {
+  return User.findById(userId).orFail()
+}
+
 module.exports.createUser = (req, res, next) => {
   User.findOne({email: req.body.email})
     .then((user) => {
