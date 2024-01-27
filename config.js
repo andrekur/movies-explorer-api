@@ -7,10 +7,12 @@ const {
   DB_HOST = '127.0.0.1',
   DB_PORT = '27017',
   SITE_URL = `http://localhost:${PORT}`,
+  HTTPS_SITE_URL = `https://localhost:${PORT}`,
 } = process.env;
 
 allowedCors = [
   SITE_URL,
+  HTTPS_SITE_URL
 ];
 
 
