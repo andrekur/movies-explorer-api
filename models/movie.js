@@ -64,11 +64,11 @@ const movieSchema = new mongoose.Schema({
       message: 'integer only'
     }
   },
-  nameRu: {
+  nameRU: {
     type: String,
     required: true
   },
-  nameEn: {
+  nameEN: {
     type: String,
     required: true
   }

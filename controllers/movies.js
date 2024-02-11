@@ -1,5 +1,5 @@
 const { ForbiddenError } = require('../errors/errors');
-const { HTTP_STATUS_NO_CONTENT, HTTP_STATUS_CREATED } = require('http2').constants
+const { HTTP_STATUS_OK, HTTP_STATUS_CREATED } = require('http2').constants
 const Movie = require('../models/movie');
 
 module.exports.getMovies = (req, res, next) => {
@@ -18,8 +18,8 @@ module.exports.createMovie = (req, res, next) => {
     description: description,
     image: image,
     trailerLink: trailer,
-    nameRu: nameRU,
-    nameEn: nameEN,
+    nameRU: nameRU,
+    nameEN: nameEN,
     thumbnail: thumbnail,
     movieId: movieId,
     owner: req.user._id
@@ -36,7 +36,7 @@ module.exports.deleteMovie = (req, res, next) => {
       }
 
       movie.deleteOne()
-        .then(() => res.status(HTTP_STATUS_NO_CONTENT).send({}))
+        .then(() => res.status(HTTP_STATUS_OK).send({}))
         .catch(next)
     })
     .catch(next)
